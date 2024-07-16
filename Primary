@@ -1,0 +1,146 @@
+import java.util.Scanner;
+import java.util.Locale;
+
+public class Main {
+    public static void main(String[] args) {
+        Locale.setDefault(Locale.US);
+        Scanner sc = new Scanner(System.in);
+
+        if (!desejaSair(sc)) {
+            System.out.println("Tranquilo, ta afim de ficar suave");
+            System.exit(0);
+        }
+
+        int mango = obterCascalho(sc);
+        if (mango <=0) {
+            for (int i = 0; i <= 100; i++) {
+                System.out.println("DURO");
+            }
+            System.exit(0);
+        }
+
+        String local = escolherLocal(sc, mango);
+        if (local.equals("cinema") && mango >= 20) {
+            escolherFilme(sc);
+        }
+
+        sc.close();
+    }
+
+    private static boolean desejaSair(Scanner sc) {
+    System.out.println("Você ta afim de sair?");
+    System.out.println("Press S or Sim for YES");
+    System.out.println("Press N or NÃO for NOT");
+
+    String opcao = sc.nextLine().toUpperCase();
+    return opcao.equals("S") || opcao.equals("SIM");
+}
+
+    private static int obterCascalho(Scanner sc) {
+        System.out.println("Mas e ai colega, tem aquela parada lá sabekkk o cascalho");
+        System.out.println("Press S for YES");
+        System.out.println("Press N for NOT");
+
+        String cascalho = sc.nextLine().toUpperCase();
+        if (cascalho.equals("S") || cascalho.equals("SIM")) {
+            System.out.println("uffa chefe ta com o malote no bolso\n");
+            System.out.println("TA COM QUANTO DE BUFUNFA:\nVALOR INTEIRO(ex: 1, 5 ou 7)\n");
+
+            int mango = sc.nextInt();
+            sc.nextLine();
+
+            if (mango > 0 && mango <= 10) {
+                System.out.println("E ta ruim mas vamo ver oque da pra fazer\n");
+            } else if (mango >= 10 && mango < 20) {
+                System.out.println("Hoje vai da pra fazer uma graça\n");
+            } else if (mango >= 20) {
+                System.out.println("Ta parecendo ate dia de pagamento hoje\n");
+            }
+            return mango;
+        } else {
+            return -1;
+        }
+    }
+
+    private static String escolherLocal(Scanner sc, int mango) {
+        System.out.println("E para onde vamos hoje?\n");
+        System.out.println("Parque de Madureira (Cruzes)\n");
+        System.out.println("Pier com os cria (Daora)\n");
+        System.out.println("Olega coffeshop (Hoje vai subir)\n");
+        System.out.println("Cinema com meu amor\n");
+
+        String local = sc.next();
+
+        switch (local.toLowerCase()) {
+            case "madureira":
+                System.out.println("Até sem dinheiro dá pra ir pra esse buraco\n");
+                break;
+            case "pier":
+                System.out.println("Sabe muito");
+                System.out.println("Pouco dinheiro, muita marola, assim que nóis gosta\n");
+                break;
+            case "olega":
+                if (mango >= 20) {
+                    System.out.println("Uffa, marolar pela barra\n");
+                } else {
+                    System.out.println("DURO");
+                }
+                break;
+            case "cinema":
+                if (mango >= 20) {
+                    System.out.println("Vamos sair com o amor da minha vida\n");
+                } else {
+                    System.out.println("Ih kkkk esquece\ncom menos de 100zao tu nao sai");
+                }
+                break;
+            default:
+                System.out.println("Opção inválida");
+                break;
+        }
+        return local;
+    }
+
+        private static void escolherFilme(Scanner sc) {
+        String escolha;
+        do {
+            System.out.println("E o filme qual vai ser?\n");
+            System.out.println("Minions 4 (Opção 1)");
+            System.out.println("Divertidamente 2 (Opção 2)");
+            System.out.println("Imaculada (Opção 3)");
+            System.out.println("Um lugar silencioso dia um (Opção 4)");
+
+            String filme = sc.next().toLowerCase();
+
+            switch (filme) {
+                case "1":
+                case "minions":
+                    System.out.println("EU AMO MINIONS UHULLLLL\n");
+                    System.out.println("Escolheu bem demais te amo meu amor!");
+                    System.exit(0);
+                    break;
+                case "2":
+                case "divertidamente":
+                    do {
+                        System.out.println("Vamos ver de novo?");
+                        escolha = sc.next().toUpperCase();
+                    } while (!escolha.equals("NAO"));
+                    break;
+                case "3":
+                case "imaculada":
+                    System.out.println("Você não é nem louco\nsabe que a Isadora odeia a Sidinei coisa lá");
+                    break;
+                case "4":
+                case "lugar silencioso":
+                    System.out.println("Caralho que filme ruim\nto arrependido!");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Opção inválida");
+                    break;
+            }
+
+            System.out.println("Deseja escolher outro filme? (SIM/NAO)");
+            escolha = sc.next().toUpperCase();
+        } while (!escolha.equals("NAO"));
+    }
+}
